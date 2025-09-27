@@ -7,7 +7,7 @@ import uvicorn  # <- add this
 
 app = FastAPI(title="Password Strength API")
 
-artifact = joblib.load("MLStrengthPred\Models\password_strength_xgb.joblib")
+artifact = joblib.load("password_strength_xgb.joblib")
 model = artifact["model"]
 vectorizer = artifact["vectorizer"]
 label_map = artifact.get("label_mapping", {0: "weak", 1: "medium", 2: "strong"})
@@ -53,3 +53,4 @@ def predict(inp: PasswordIn):
 # ---- start server automatically ----
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
